@@ -1,6 +1,6 @@
 # vscode-config
 
-Useful links and settings for VSCode
+Useful links and settings for [VSCode](https://github.com/microsoft/vscode) IDE.
 
 ## Documentation
 
