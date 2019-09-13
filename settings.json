@@ -92,7 +92,8 @@
     "go.useLanguageServer": true,
     "go.languageServerExperimentalFeatures": {
         "documentLink": false,
-        "incrementalSync": true
+        "incrementalSync": true,
+        // "format": false, - add this to stop gopls formatting and to use goimports directly with --local flag
     },
     "gopls": {
         "usePlaceholders": true
