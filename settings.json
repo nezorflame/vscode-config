@@ -1,0 +1,144 @@
+{
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.external.linuxExec": "tilix",
+    "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+    "terminal.integrated.shell.linux": "/bin/zsh",
+    // Enable native tabs (macOS-only for now)
+    "window.nativeTabs": true,
+    // Enable new context menu (Linux-only for now)
+    // "window.titleBarStyle": "custom",
+    "breadcrumbs.enabled": true,
+    // Fira Code can be downloaded here: https://github.com/tonsky/FiraCode/wiki
+    "editor.fontFamily": "Fira Code",
+    "editor.fontSize": 13,
+    // Enable font ligatures (Fira Code supports them)
+    "editor.fontLigatures": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on",
+    "editor.renderControlCharacters": false,
+    "editor.copyWithSyntaxHighlighting": true,
+    "extensions.autoUpdate": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "telemetry.enableTelemetry": false,
+    "window.zoomLevel": 0,
+    "workbench.startupEditor": "newUntitledFile",
+    // One Dark Pro theme
+    "workbench.colorTheme": "One Dark Pro",
+    // Material Icon Theme pack
+    "workbench.iconTheme": "material-icon-theme",
+    "files.associations": {
+        "*.lock": "toml",
+        "*.tpl": "gohtml",
+        "CHANGELOG": "markdown",
+        "README": "markdown",
+        "Dockerfile*": "dockerfile",
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/desktop.ini": true
+    },
+    // Golang templates
+    "emmet.syntaxProfiles": {
+        "tpl": "html"
+    },
+    "emmet.triggerExpansionOnTab": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    // Go-related settings for Go modules and gopls
+    // =========================
+    "go.autocompleteUnimportedPackages": true,
+    "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
+    "go.docsTool": "godoc",
+    "go.formatTool": "goimports",
+    "go.formatFlags": [
+        "--local=github.com/your/repo"
+    ],
+    // I suggest either golangci-lint or revive, see related configs in this repo
+    "go.lintTool": "golangci-lint",
+    // "go.lintTool": "revove",
+    "go.lintFlags": [
+        "--config=$YOUR_CONFIG_FOLDER/.golangci.yml"
+        // "--config=$YOUR_CONFIG_FOLDER/revive.toml"
+    ],
+    "go.buildOnSave": "off",
+    "go.vetOnSave": "off",
+    "go.lintOnSave": "package",
+    "go.coverageDecorator": {
+        "type": "gutter"
+    },
+    "go.coverageOptions": "showUncoveredCodeOnly",
+    "go.coverOnTestPackage": true,
+    "go.coverOnSingleTest": false,
+    "go.testFlags": [
+        "-v",
+        "-cover"
+    ],
+    "go.addTags": {
+        "tags": "json",
+        "promptForTags": false,
+        "transform": "snakecase"
+    },
+    "go.enableCodeLens": {
+        "references": false,
+        "runtest": true
+    },
+    "go.useLanguageServer": true,
+    "go.languageServerExperimentalFeatures": {
+        "documentLink": false,
+        "incrementalSync": true
+    },
+    "gopls": {
+        "usePlaceholders": true
+    },
+    "[go]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.codeActionsOnSaveTimeout": 3000,
+        "editor.defaultFormatter": "ms-vscode.Go",
+        "editor.snippetSuggestions": "top",
+    },
+    "files.eol": "\n",
+    // Other extensions
+    // =========================
+    "clang-format.style": "{BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 100}",
+    "protoc": {
+        "options": [
+            "--proto_path=protos/v3",
+            "--proto_path=protos/v2",
+            "--proto_path=${workspaceFolder}/api",
+            "--proto_path=${workspaceFolder}/vendor.pb",
+            "--proto_path=${env.GOPATH}/src",
+        ],
+    },
+    "[proto3]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "pgFormatter.formatType": false,
+    "yaml.format.enable": true,
+    "todohighlight.isEnable": true,
+    "todohighlight.include": [
+        "**/*.go",
+        "**/*.md"
+    ],
+    "todohighlight.exclude": [
+        "**/node_modules/**",
+        "**/bower_components/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.vscode/**",
+        "**/.github/**",
+        "**/_output/**",
+        "**/*.min.*",
+        "**/*.map",
+        "**/.next/**",
+        "**/vendor/**"
+    ],
+}
