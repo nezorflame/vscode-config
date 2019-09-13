@@ -35,7 +35,7 @@ Keybindings as in the IDEA-like IDE's - [link](https://marketplace.visualstudio.
 - **shell-format** ([link](https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format)): script and config formatting (`shellscript`, `Dockerfile`, `hosts`, etc.)
 - **Markdown All in One** ([link](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)): extended  Markdown support
 - **markdownlint** ([link](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)): linter for the Markdown files
-- **Better TOML** ([link](https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml)): TOML
+- **Better TOML** ([link](https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml)): [TOML](https://github.com/toml-lang/toml) support
 - **pgFormatter** ([link](https://marketplace.visualstudio.com/items?itemName=bradymholt.pgformatter)): PostgreSQL
 
 ### Utilities
