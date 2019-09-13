@@ -62,14 +62,14 @@
     ],
     // I suggest either golangci-lint or revive, see related configs in this repo
     "go.lintTool": "golangci-lint",
-    // "go.lintTool": "revove",
+    // "go.lintTool": "revive",
     "go.lintFlags": [
         "--config=$YOUR_CONFIG_FOLDER/.golangci.yml"
         // "--config=$YOUR_CONFIG_FOLDER/revive.toml"
     ],
     "go.buildOnSave": "off",
     "go.vetOnSave": "off",
-    "go.lintOnSave": "package",
+    "go.lintOnSave": "package", // revive can lint the whole workspace fast
     "go.coverageDecorator": {
         "type": "gutter"
     },
