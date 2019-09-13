@@ -56,7 +56,7 @@
     "go.autocompleteUnimportedPackages": true,
     "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
     "go.docsTool": "godoc",
-    "go.formatTool": "goimports",
+    "go.formatTool": "goimports", // this is handled by gopls so this section is ignored, see gopls section below
     "go.formatFlags": [
         "--local=github.com/your/repo"
     ],
