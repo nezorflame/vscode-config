@@ -51,6 +51,11 @@
     "git.autofetch": true,
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/vendor": true,
+    },
     // Go-related settings for Go modules and gopls
     // =========================
     "go.autocompleteUnimportedPackages": true,
@@ -125,6 +130,12 @@
     },
     "[proto3]": {
         "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    },
+    "[helm]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml",
     },
     "pgFormatter.formatType": false,
     "yaml.format.enable": true,
