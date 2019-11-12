@@ -61,7 +61,7 @@
     "go.autocompleteUnimportedPackages": true,
     "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
     "go.docsTool": "godoc",
-    "go.formatTool": "goimports", // this is handled by gopls so this section is ignored, see gopls section below
+    "go.formatTool": "goimports", // this will be ignored if gopls has option '"format": true', see gopls section below
     "go.formatFlags": [
         "--local=github.com/your/repo"
     ],
@@ -74,7 +74,7 @@
     ],
     "go.buildOnSave": "off",
     "go.vetOnSave": "off",
-    "go.lintOnSave": "package", // revive can lint the whole workspace fast
+    "go.lintOnSave": "package", // use "workspace" if your project is small enough for linter to work fast
     "go.coverageDecorator": {
         "type": "gutter"
     },
@@ -83,7 +83,8 @@
     "go.coverOnSingleTest": false,
     "go.testFlags": [
         "-v",
-        "-cover"
+        "-cover",
+        // "-count=1", - add this to remove test caching
     ],
     "go.addTags": {
         "tags": "json",
@@ -96,12 +97,24 @@
     },
     "go.useLanguageServer": true,
     "go.languageServerExperimentalFeatures": {
-        "documentLink": false,
+        "autoComplete": true,
+        "diagnostics": true,
+        "documentLink": false, // to remove import links to godoc
+        "documentSymbols": true,
+        "findReferences": true,
+        "format": false, // to let goimports/gofmt/goreturns format the code instead of gopls
+        "goToDefinition": true,
+        "goToTypeDefinition": true,
+        "highlight": true,
+        "hover": true,
         "incrementalSync": true,
-        // "format": false, - add this to stop gopls formatting and to use goimports directly
+        "rename": true,
+        "signatureHelp": true,
+        "workspaceSymbols": true,
     },
     "gopls": {
         "usePlaceholders": true, // add parameter placeholders when completing a function
+        "staticcheck": false, // add staticcheck linter capabilities
         // Experimental settings
         "completeUnimported": true, // autocomplete unimported packages
         "watchFileChanges": true, // watch file changes outside of the editor
@@ -113,7 +126,7 @@
         },
         "editor.codeActionsOnSaveTimeout": 3000,
         "editor.defaultFormatter": "ms-vscode.Go",
-        "editor.snippetSuggestions": "top",
+        "editor.snippetSuggestions": "inline",
     },
     "files.eol": "\n",
     // Other extensions
