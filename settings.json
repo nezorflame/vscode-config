@@ -60,10 +60,10 @@
     // =========================
     "go.autocompleteUnimportedPackages": true,
     "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
-    "go.docsTool": "godoc",
+    "go.docsTool": "godoc",  // this will be ignored if useLanguageServer is true
     "go.formatTool": "goimports", // this will be ignored if gopls has option '"format": true', see gopls section below
     "go.formatFlags": [
-        "--local=github.com/your/repo"
+        "--local=github.com/your/repo" // goimports-only
     ],
     // I suggest either golangci-lint or revive, see related configs in this repo
     "go.lintTool": "golangci-lint",
@@ -84,51 +84,45 @@
     "go.testFlags": [
         "-v",
         "-cover",
-        // "-count=1", - add this to remove test caching
+        // "-count=1" - add this to remove test caching
     ],
     "go.addTags": {
         "tags": "json",
         "promptForTags": false,
-        "transform": "snakecase"
+        "transform": "snakecase",
+        "options": "", // e.g. omitempty
     },
     "go.enableCodeLens": {
         "references": false,
-        "runtest": true
+        "runtest": true,
     },
     "go.useLanguageServer": true,
     "go.languageServerExperimentalFeatures": {
-        "autoComplete": true,
         "diagnostics": true,
-        "documentLink": false, // to remove import links to godoc
-        "documentSymbols": true,
-        "findReferences": true,
-        "format": false, // to let goimports/gofmt/goreturns format the code instead of gopls
-        "goToDefinition": true,
-        "goToTypeDefinition": true,
-        "highlight": true,
-        "hover": true,
-        "incrementalSync": true,
-        "rename": true,
-        "signatureHelp": true,
-        "workspaceSymbols": true,
+        "documentLink": false, // to stop showing imports as the URLs to godoc
+        "format": false, // this is required to stop gopls formatting and to use goimports directly with --local flag from the settings above
     },
+    // uncomment if debug is needed
+    // "go.languageServerFlags": [
+    //     "-rpc.trace", // for more detailed debug logging
+    //     "serve",
+    //     "--debug=localhost:6060", // to investigate memory usage, see profiles 
+    // ],
     "gopls": {
         "usePlaceholders": true, // add parameter placeholders when completing a function
-        "staticcheck": false, // add staticcheck linter capabilities
         // Experimental settings
         "completeUnimported": true, // autocomplete unimported packages
-        "watchFileChanges": true, // watch file changes outside of the editor
         "deepCompletion": true, // enable deep completion
     },
     "[go]": {
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true
+            "source.organizeImports": true,
         },
         "editor.codeActionsOnSaveTimeout": 3000,
         "editor.defaultFormatter": "ms-vscode.Go",
-        "editor.snippetSuggestions": "inline",
+        "editor.formatOnSave": true,
+        "editor.snippetSuggestions": "inline", // select "none" if you don't want snippets to be shown
     },
-    "files.eol": "\n",
     // Other extensions
     // =========================
     "clang-format.style": "{BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 100}",
