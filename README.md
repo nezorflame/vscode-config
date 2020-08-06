@@ -2,6 +2,8 @@
 
 Useful links and settings for [VSCode](https://github.com/microsoft/vscode) IDE.
 
+Short link for [settings](settings.json) file: <https://git.io/JJigb>
+
 ## Documentation
 
 - [Getting Started](https://code.visualstudio.com/docs)
