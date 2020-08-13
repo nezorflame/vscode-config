@@ -78,7 +78,6 @@
     ],
     "go.toolsEnvVars": {
         "GO111MODULE": "on"
-        // "GOFLAGS": "-mod=vendor", // to work with modules in vendoring mode
     },
     "go.buildOnSave": "off",
     "go.vetOnSave": "off",
@@ -140,7 +139,7 @@
         // If company chooses to use its own `godoc.org`, its address can be used as well.
         // "linkTarget": "pkg.go.dev",
         // This is the equivalent of the `goimports -local` flag.
-        // "local": "go.avito.ru/au",
+        "local": "github.com/your/repo",
         // Add parameter placeholders when completing a function.
         "usePlaceholders": true
         // EXPERIMENTAL!
