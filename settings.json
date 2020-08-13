@@ -66,7 +66,7 @@
     "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
     "go.docsTool": "godoc", // this will be ignored if useLanguageServer is true
     "go.formatTool": "goimports", // this will be ignored if gopls has option '"format": true', see gopls section below
-    // "go.formatFlags": [ // used for goimports-only
+    // "go.formatFlags": [ // used for goimports-only, gopls ignores this and have a flag for this as well, see gopls section below
     //     "--local=github.com/your/repo"
     // ],
     // I suggest either golangci-lint or revive, see related configs in this repo
@@ -77,7 +77,7 @@
         // "--config=$YOUR_CONFIG_FOLDER/revive.toml"
     ],
     "go.toolsEnvVars": {
-        "GO111MODULE": "on"
+        "GO111MODULE": "on" // I prefer setting this to 'on', but YMMV
     },
     "go.buildOnSave": "off",
     "go.vetOnSave": "off",
