@@ -2,18 +2,16 @@
     // "terminal.external.windowsExec": "wt.exe",
     // "terminal.external.osxExec": "iTerm.app",
     // "terminal.external.linuxExec": "tilix",
-    // "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
-    // "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
-    // "terminal.integrated.shell.linux": "/bin/zsh",
-    // Fix potential lagging during rendering
-    "terminal.integrated.rendererType": "auto",
+    // "terminal.integrated.defaultProfile.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+    // "terminal.integrated.defaultProfile.osx": "/usr/local/bin/zsh",
+    // "terminal.integrated.defaultProfile.linux": "/bin/zsh",
     // Enable native tabs (macOS-only for now)
     // "window.nativeTabs": true,
     // Enable new context menu (Linux-only for now)
     // "window.titleBarStyle": "custom",
     "breadcrumbs.enabled": true,
-    // Cascadia Code can be downloaded here: https://github.com/microsoft/cascadia-code
-    "editor.fontFamily": "Cascadia Code PL",
+    // Cascadia Code NF or other nerd fonts can be downloaded here: https://www.nerdfonts.com/font-downloads
+    "editor.fontFamily": "CaskaydiaCove NF",
     "editor.fontSize": 13,
     // Enable font ligatures (Cascadia Code PL supports them)
     "editor.fontLigatures": true,
@@ -22,11 +20,13 @@
     "editor.wordWrap": "on",
     "editor.renderControlCharacters": false,
     "editor.copyWithSyntaxHighlighting": true,
+    "diffEditor.ignoreTrimWhitespace": false,
     "extensions.autoUpdate": true,
+    "extensions.ignoreRecommendations": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
+    // Disable telemetry
     "telemetry.enableTelemetry": false,
-    "window.zoomLevel": 0,
     "workbench.startupEditor": "newUntitledFile",
     // One Dark Pro theme
     "workbench.colorTheme": "One Dark Pro",
@@ -57,31 +57,51 @@
         "tpl": "html"
     },
     "emmet.triggerExpansionOnTab": true,
+    "emmet.includeLanguages": {
+        "jekyll": "html",
+        "scss": "css"
+    },
+    // Git settings
     "git.autofetch": true,
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
-    // Go-related settings for Go modules and gopls
-    // =========================
-    "go.autocompleteUnimportedPackages": true,
-    "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
-    "go.docsTool": "godoc", // this will be ignored if useLanguageServer is true
-    "go.formatTool": "goimports", // this will be ignored if gopls has option '"format": true', see gopls section below
-    // "go.formatFlags": [ // used for goimports-only, gopls ignores this and have a flag for this as well, see gopls section below
-    //     "--local=github.com/your/repo"
-    // ],
-    // I suggest either golangci-lint or revive, see related configs in this repo
+    // GitLens extension remotes
+    "gitlens.remotes": [
+        // {
+        //     "name": "Some Bitbucket Server",
+        //     "type": "BitbucketServer",
+        //     "domain": "your.custom.domain",
+        //     "protocol": "https",
+        // },
+    ],
+    // Settings for remote work
+    "remote.extensionKind": {
+        "ms-azuretools.vscode-docker": "workspace"
+    },
+    // List your remotes' OS here
+    "remote.SSH.remotePlatform": {
+        // "my.ssh.server": "linux",
+    },
+    // Search exceptions
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/vendor": true
+    },
     "go.lintTool": "golangci-lint",
     // "go.lintTool": "revive",
     "go.lintFlags": [
-        "--config=$YOUR_CONFIG_FOLDER/.golangci.yml"
-        // "--config=$YOUR_CONFIG_FOLDER/revive.toml"
+        "-v",
+        // "--config=/your/gosrc/folder/.golangci.yml", // for golangci-lint
+        // "--config=/your/gosrc/folder/.revive.toml",  // for revive
     ],
+    // you can set "workspace" here for small/medium projects
+    "go.lintOnSave": "package",
+    // List your goproxy-related envs here
     "go.toolsEnvVars": {
-        "GO111MODULE": "on" // I prefer setting this to 'on', but YMMV
+        // "GOPROXY": "https://your.goproxy.server|https://proxy.golang.org,direct",
+        // "GONOSUMDB": "company.module.prefix",
     },
-    "go.buildOnSave": "off",
-    "go.vetOnSave": "off",
-    "go.lintOnSave": "package", // use "workspace" if your project is small enough for linter to work fast
     "go.coverageDecorator": {
         "type": "gutter"
     },
@@ -90,112 +110,74 @@
     "go.coverOnSingleTest": false,
     "go.testFlags": [
         "-v",
-        "-cover"
-        // "-count=1" - add this to remove test caching
+        "-cover",
+        // "-count=1", // enable this to disable test caching
     ],
     "go.addTags": {
-        "tags": "json,sql",
+        "tags": "json,db",
         "options": "json=omitempty",
         "promptForTags": true,
         "transform": "snakecase"
     },
     "go.enableCodeLens": {
-        "references": false,
         "runtest": true
     },
-    // Delve debugger settings
-    "go.delveConfig": {
-        "dlvLoadConfig": {
-            "followPointers": true,
-            "maxVariableRecurse": 5,
-            "maxStringLen": 500,
-            "maxArrayValues": 100,
-            "maxStructFields": -1
+    // Delve settings - uncomment and set up as required
+    // "go.delveConfig": {
+    //     "dlvLoadConfig": {
+    //         "followPointers": true,
+    //         "maxVariableRecurse": 5,
+    //         "maxStringLen": 100,
+    //         "maxArrayValues": 50,
+    //         "maxStructFields": -1
+    //     },
+    //     "apiVersion": 2,
+    //     "showGlobalVariables": true,
+    // },
+    "[go]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
         },
-        "apiVersion": 2,
-        "showGlobalVariables": true
+        "editor.defaultFormatter": "golang.go",
+        "editor.formatOnSave": true,
+        // Optional: disable snippets with 'none', as they conflict with completion ranking.
+        "editor.snippetSuggestions": "inline",
     },
+    "[go.mod]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+        "editor.formatOnSave": true,
+    },
+    "go.toolsManagement.autoUpdate": true,
     // LSP settings - see https://github.com/golang/tools/blob/master/gopls/doc/vscode.md
     "go.useLanguageServer": true,
-    "go.languageServerExperimentalFeatures": {
-        "diagnostics": true,
-        "documentLink": false // to stop showing imports as the URLs to godoc
-    },
-    // uncomment if debug is needed
+    // uncomment if LSP debug is needed
     // "go.languageServerFlags": [
     //     "-rpc.trace", // for more detailed debug logging
     //     "serve",
     //     "--debug=localhost:6060", // to investigate memory usage, see profiles 
     // ],
+    // gopls flags - see https://github.com/golang/tools/blob/master/gopls/doc/settings.md
     "gopls": {
-        // This is the set of flags passed on to the build system when invoked.
-        // "buildFlags": "",
-        // This can be used to add environment variables.
-        // These will not affect `gopls` itself, but will be used for any external commands it invokes.
-        // "env": {},
-        // This controls the information that appears in the hover text.
-        "hoverKind": "FullDocumentation",
-        // This controls where documentation points to for given package in `textDocument/documentLink`.
-        // If company chooses to use its own `godoc.org`, its address can be used as well.
-        // "linkTarget": "pkg.go.dev",
-        // This is the equivalent of the `goimports -local` flag.
-        "local": "github.com/your/repo",
-        // Add parameter placeholders when completing a function.
-        "usePlaceholders": true
-        // EXPERIMENTAL!
-        // If false, indicates that the user does not want documentation with completion results.
-        // "completionDocumentation": true,
-        // If true, the completion engine is allowed to make suggestions for packages that you do not currently import.
-        // "completeUnimported": false,
-        // If true, this turns on the ability to return completions from deep inside relevant entities, rather than just the locally accessible ones.
-        // "deepCompletion": true,
-        // A list of the names of analysis passes that should be disabled.
-        // "experimentalDisabledAnalyses": [],
-        // If true, this enables server side fuzzy matching of completion candidates.
-        // "fuzzyMatching": true,
-        // This enables additional analyses with staticcheck.
-        // Warning: This will significantly increase memory usage.
-        // "staticcheck": false,
+        "build.experimentalWorkspaceModule": true,
+        "formatting.gofumpt": true,
+        "ui.completion.usePlaceholders": true,
+        "ui.documentation.linksInHover": false,
+        "ui.semanticTokens": true,
+        // "formatting.local": "your/project/module" // you can also add this per-project
     },
-    "[go]": {
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        },
-        "editor.defaultFormatter": "golang.go",
-        "editor.formatOnSave": true,
-        "editor.snippetSuggestions": "inline" // select "none" if you don't want snippets to be shown
-    },
-    "[go.mod]": {
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        },
-        "editor.formatOnSave": true
-    },
+    // ----------- Go-related settings end
     // Other extensions
-    // =========================
     "[dockerfile]": {
         "editor.defaultFormatter": "ms-azuretools.vscode-docker"
     },
     "[helm]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
+    "redhat.telemetry.enabled": false,
+    "yaml.schemas": {
+        "file:///toc.schema.json": "/toc\\.yml/i"
+    },
     "yaml.format.enable": true,
-    "todohighlight.isEnable": true,
-    "todohighlight.include": [
-        "**/*.go",
-        "**/*.md"
-    ],
-    "todohighlight.exclude": [
-        "**/node_modules/**",
-        "**/bower_components/**",
-        "**/dist/**",
-        "**/build/**",
-        "**/.vscode/**",
-        "**/.github/**",
-        "**/_output/**",
-        "**/*.min.*",
-        "**/*.map",
-        "**/.next/**",
-        "**/vendor/**"
-    ]
 }
