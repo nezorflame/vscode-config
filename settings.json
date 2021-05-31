@@ -6,9 +6,9 @@
     // "terminal.integrated.defaultProfile.osx": "/usr/local/bin/zsh",
     // "terminal.integrated.defaultProfile.linux": "/bin/zsh",
     // Enable native tabs (macOS-only for now)
-    // "window.nativeTabs": true,
+    "window.nativeTabs": true,
     // Enable new context menu (Linux-only for now)
-    // "window.titleBarStyle": "custom",
+    "window.titleBarStyle": "custom",
     "breadcrumbs.enabled": true,
     // Cascadia Code NF or other nerd fonts can be downloaded here: https://www.nerdfonts.com/font-downloads
     "editor.fontFamily": "CaskaydiaCove NF",
@@ -163,7 +163,7 @@
         "build.experimentalWorkspaceModule": true,
         "formatting.gofumpt": true,
         "ui.completion.usePlaceholders": true,
-        "ui.documentation.linksInHover": false,
+        "ui.navigation.importShortcut": "Definition",
         "ui.semanticTokens": true,
         // "formatting.local": "your/project/module" // you can also add this per-project
     },
